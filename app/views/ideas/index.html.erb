@@ -1,9 +1,29 @@
-<div class="h-[200vh] px-4 ">
-    <div class="py-6">
-        <h1 class="text-red-400">This is my 1st app ever whooo!!!!</h1>
-        <h2>OLA</h2>
-        <h2>OLA24</h2>
-        <h3>Branch 2</h3>
-        <h4>Branch12323</h4>
+<div class="h-[1rem]">
+</div>
+<div class="min-h-screen   bg-gray-50 px-4">
+   <form class="simple_form new_idea max-w-5xl mx-auto" id="new_idea" action="/ideas" accept-charset="UTF-8" method="post">
+  <input type="hidden" name="authenticity_token" autocomplete="off">
+  <div class="mb-4 text optional idea_description">
+    <label class="block text optional text-sm font-medium text-gray-600" for="idea_description">Description</label>
+    <textarea class="max-h-[30rem] overflow-y-auto shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out text optional" name="idea[description]" id="idea_description"></textarea>
+  </div>
+  <div class="mb-4 string optional idea_author">
+    <label class="block string optional text-sm font-medium text-gray-600" for="idea_author">Author</label>
+    <input class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out string optional" type="text" name="idea[author]" id="idea_author">
+  </div>
+  <div class="flex justify-end w-full">
+  <button type="submit" class= "bg-gray-800 px-4 w-fit py-1 px-2 rounded-xl  text-white" type="submit" name="commit" value="Submit" data-disable-with="Submit">
+    Submit
+  </button>
+  </div>
+</form>
+    <div class=" mt-4 grid md:grid-cols-2 grid-cols-1 md:gap-4 gap-4">
+        <% @ideas.each do |idea| %>
+        <div class="py-2 rounded-xl px-2 pt-4 border border-gray-800 shadow-xl">
+            <h1 class=" font-medium text-2xl"><%= idea.description %></h1>
+            <h1 class="italic">-<%= idea.author %></h1>
+        </div>
+        <% end %>
     </div>
+
 </div>
