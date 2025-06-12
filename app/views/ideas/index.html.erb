@@ -1,6 +1,6 @@
 <div class="h-[1rem]">
 </div>
-<div class="min-h-[200vh]  bg-gray-50 px-4">
+<div class="min-h-screen pb-32 relative  bg-gray-50 px-4">
     <div data-controller='modal'>
         <div class="max-w-5xl flex w-full mx-auto justify-end">
             <button data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-gray-800 hover:bg-gray-700  focus:outline-none font-medium rounded-xl text-sm px-5 py-2.5 text-center cursor-pointer" type="button">
@@ -16,11 +16,11 @@
                         <input type="hidden" name="authenticity_token" autocomplete="off">
                         <div class="mb-4 text optional idea_description">
                             <label class="block text optional text-sm font-medium text-gray-600" for="idea_description">Description</label>
-                            <textarea required class="max-h-[30rem] overflow-y-auto shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out text optional" name="idea[description]" id="idea_description"></textarea>
+                            <textarea required class="max-h-[30rem] overflow-y-auto shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500  leading-6 transition-colors duration-200 ease-in-out text-gray-800" name="idea[description]" id="idea_description"></textarea>
                         </div>
                         <div class="mb-4 string optional idea_author">
                             <label class="block string optional text-sm font-medium text-gray-600" for="idea_author">Author</label>
-                            <input required class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out string optional" type="text" name="idea[author]" id="idea_author">
+                            <input required class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500  leading-6 transition-colors duration-200 ease-in-out string optional" type="text" name="idea[author]" id="idea_author">
                         </div>
                         <div class="flex justify-end w-full">
                             <button type="submit" class="bg-gray-800 px-4 w-fit py-1 px-2 font-medium rounded-lg text-sm px-5 py-2.5 rounded-xl  text-white" type="submit" name="commit" value="Submit" data-disable-with="Submit">
@@ -36,11 +36,11 @@
         <input type="hidden" name="authenticity_token" autocomplete="off">
         <div class="mb-4 text optional idea_description">
             <label class="block text optional text-sm font-medium text-gray-600 mb-1" for="idea_description">Description :</label>
-            <textarea  class="max-h-[30rem] overflow-y-auto shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out text optional" name="idea[description]" id="idea_description"></textarea>
+            <textarea  class="max-h-[30rem] overflow-y-auto shadow appearance-none border border-gray-400 text-black rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500  leading-6 transition-colors duration-200 ease-in-out text optional" name="idea[description]" id="idea_description"></textarea>
         </div>
         <div class="mb-4 string optional idea_author">
             <label class="block string optional text-sm font-medium text-gray-600 mb-1" for="idea_author">Author :</label>
-            <input required required class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out string optional" type="text" name="idea[author]" id="idea_author">
+            <input required required class="shadow appearance-none border border-gray-400 text-black  rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500  leading-6 transition-colors duration-200 ease-in-out string optional" type="text" name="idea[author]" id="idea_author">
         </div>
         <div class="flex justify-end w-full">
             <button type="submit" class="bg-gray-800 px-4 w-fit py-1 px-2 font-medium rounded-lg text-sm px-5 py-2.5 rounded-xl  text-white" type="submit" name="commit" value="Submit" data-disable-with="Submit">
@@ -48,13 +48,26 @@
             </button>
         </div>
     </form>
-    <div class=" mt-4 grid md:grid-cols-2 grid-cols-1 md:gap-6 gap-4  max-w-5xl mx-auto">
+    <div class=" mt-4 relative grid md:grid-cols-2 grid-cols-1 md:gap-6 gap-4  max-w-5xl mx-auto">
         <% @ideas.each do |idea| %>
-        <div class="py-2 rounded-xl px-4 pt-4 border border-gray-400 shadow-md">
+        <div class="pb-2 pt-8  group rounded-xl px-4 pt-4 border border-gray-400 relative shadow-md">
             <h1 class=" font-medium text-2xl"><%= idea.description %></h1>
             <h1 class="italic">-<%= idea.author %></h1>
+            <div>
+            <div class="absolute hidden group-hover:block transition-all ease-in duration-200 right-0 top-2">
+            <div class="flex items-center gap-1">
+            <%= button_to 'Delete', idea_path(idea), method: :delete, class: '  text-white bg-red-500 cursor-pointer font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 bg-red-400 hover:bg-red-700 ', form: { data: {turbo_confirm: "Are you sure?"}} %>
+            <%= link_to 'Edit',edit_idea_path(idea) ,class: '  text-white bg-blue-500 cursor-pointer font-medium rounded-lg text-sm px-2 py-1 me-2 mb-2 hover:bg-blue-700 ' %>
+            </div>
+            </div>
+            </div>
         </div>
+        
         <% end %>
+        <div class="absolute  left-1/2 -translate-x-1/2 -bottom-18">
+        <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+        </div>
     </div>
+    
 
 </div>

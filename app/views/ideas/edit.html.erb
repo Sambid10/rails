@@ -1,0 +1,31 @@
+<div class="h-[1rem]">
+</div>
+<div class="min-h-screen   bg-gray-50 px-4">
+<h1 class="text-3xl font-semibold mb-4 text-center">Update Information ?</h1>
+ <form class="simple_form new_idea max-w-5xl mx-auto" id="edit_idea" action="<%= idea_path(@idea) %>" accept-charset="UTF-8" method="post">
+       <input type="hidden" name="_method" value="patch" />
+        <div class="mb-4 text optional idea_description">
+            <label class="block text optional text-sm font-medium text-gray-600 mb-1" for="idea_description">Description :</label>
+            <textarea  
+            class="max-h-[30rem] overflow-y-auto shadow appearance-none border border-gray-400 text-black rounded w-full py-2 px-3 bg-white text-left focus:outline-none focus:ring-0 focus:border-blue-500   transition-colors duration-200 ease-in-out text optional" 
+            name="idea[description]" 
+            id="idea_description"><%= @idea.description %>
+            </textarea>
+        </div>
+        <div class="mb-4 string optional idea_author">
+            <label class="block string optional text-sm font-medium text-gray-600 mb-1" for="idea_author">Author :</label>
+            <input 
+            required 
+            class="shadow appearance-none border border-gray-400 text-black  rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500  leading-6 transition-colors duration-200 ease-in-out string optional" 
+            type="text" 
+            name="idea[author]" 
+            value="<%=@idea.author %>"
+            id="idea_author">
+        </div>
+        <div class="flex justify-end w-full">
+            <button type="submit" class="bg-gray-800 px-4 w-fit py-1 px-2 font-medium rounded-lg text-sm px-5 py-2.5 rounded-xl  text-white" type="submit" name="commit" value="Submit" data-disable-with="Submit">
+                Update
+            </button>
+        </div>
+</form>
+</div>
