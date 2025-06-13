@@ -29,7 +29,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
-gem 'pagy', '~> 6.2'
+gem 'pagy', '~> 9.3'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
